@@ -24,35 +24,106 @@
     A map of the pedestrian foot traffic (as measured by the number of "FOOD" businesses returned by yelp in an 80 meter radius). For map simplicity we only show the first 5000 (approximately) most dangerous intersections as colored circled (red = more foot traffic, green = less foot traffic). The 20 (approximately) most dangerous intersections for pedestrians are given a marker. 
     </div>
 
-    <img src="colorscale.png" alt="Color Scale" style="width:300px;height:300px">
+    <div id="app" width="100%">
+        <div id="side" width="20%">
+            <img src="colorscale.png" alt="Color Scale" style="width:300px;height:300px">
+            <div id = 'dropdowns'></div>
+            <button onclick="draw_map()" type="button">Redraw Map</button>
+        <div>
+
     
-	<div id = 'humps' style="width: 100%; height: 500px; background-color: lightgray;"></div>
+        <div id = 'the_map' style="width: 80%; height: 500px; background-color: lightgray;"></div>
+    </div>
+
+    <script>
+        var dropdowns = [{"name":"Danger_Metric", 
+                          "values": ["CRASHES",
+                                    "NUMBER OF PERSONS INJURED",
+                                    "NUMBER OF PERSONS KILLED",
+                                    "NUMBER OF CYCLIST INJURED",
+                                    "NUMBER OF CYCLIST KILLED",
+                                    "NUMBER OF MOTORIST INJURED",                                    
+                                    "NUMBER OF MOTORIST KILLED",
+                                    "NUMBER OF PEDESTRIANS INJURED",
+                                    "NUMBER OF PEDESTRIANS KILLED",
+                                    ]},
+                        {"name": "Traffic_Metric",
+                         "values": ["YELP_BAR_80",
+                                    "YELP_DRINK_80",
+                                    "YELP_FOOD_80",
+                                    "YELP_MUSIC_80",
+                                    "YELP_SHOW_80"]}];
+        //console.log(dropdowns)
+        for(var i=0; i<dropdowns.length; i++){
+            dropdown = dropdowns[i]
+    			//add the title
+    			d3.select("div#dropdowns")
+    			 	.append("p")
+    			 	.html(dropdown.name + " : ");
+
+    			//add the dropdown
+    			d3.select("div#dropdowns")
+    			 	.append("select")
+    			 	.attr("class", "dropdown")
+    			 	.attr("name", dropdown.name)
+    			 	.attr("id", dropdown.name);
+
+    			//add each value of the dropdown
+             for(var j=0; j<dropdown.values.length; j++){
+                value = dropdown.values[j]
+                //console.log("dropdown:"+dropdown.name+" value:" + value)
+    				d3.select("select#"+dropdown.name)
+    					.append("option")
+    					.attr("value", this.value)
+    					.html(value)
+    					.on("select", function(v){
+                          d3.select("#"+dropdown.name)
+        						.html(v)
+        						.attr("value", this.value);
+					});
+    			}
+    		};
+    </script>
 	
 	<script>
-        //make map of humps
-        var map = L.map("humps").setView([40.753597, -73.986808], 13);
+        //make map
+        function draw_map(){
+            //clear map
+            map.remove()
+            map = L.map("the_map").setView([40.753597, -73.986808], 13);
             L.tileLayer('http://{s}.tiles.mapbox.com/v3/seanluciotolentino.jhknj4m5/{z}/{x}/{y}.png',{
             		maxZoom: 18
-        	}).addTo(map);
-
-        	
-        	//define points
-        	$.get("http://127.0.0.1:5000/intersections",{}).then(function(data){
-                //console.log(data)
-                //console.log(data.markers)
-            
-        	    //add circles
-        	    (data.circles).forEach(function(c){
-                	    	//console.log('circle'+c)
-                	    	L.circle([c.lat, c.lon], 50, {
-                	    	    color: c.color,
-                	    	    fillColor: c.color,
-                	    	    fillOpacity: 0.5
-                       	}).addTo(map);
-            	     });
-        	});
-    </script>
+            	}).addTo(map);
     
+            //dropdowns
+            	var danger = d3.select("#Danger_Metric")[0][0].selectedOptions[0].getAttribute("value")
+            var traffic = d3.select("#Traffic_Metric")[0][0].selectedOptions[0].getAttribute("value")
+    
+            console.log("danger: "+danger+" traffic: "+traffic)      
+            //define points
+            var call = "http://127.0.0.1:5000/intersections/"+danger+"&"+traffic
+            console.log("call:"+call)
+            	$.get(call,{}).then(function(data){
+                console.log(data)
+                //console.log(data.markers)
+                
+            	    //add circles
+                for(var i =0; i<data.circles.length; i++){
+                    c = data.circles[i]
+                    	    	//console.log('circle'+c)
+                    	    	L.circle([c.lat, c.lon], 50, {
+                       	    	    color: c.color,
+                        	    	    fillColor: c.color,
+                        	    	    fillOpacity: 0.5
+                       	}).addTo(map);
+            	   };
+            	});
+        }
+
+        var map = L.map("the_map").setView([40.753597, -73.986808], 13);
+        draw_map()
+    </script>
+
 </body>
 </html>
 

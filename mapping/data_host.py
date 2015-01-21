@@ -11,55 +11,62 @@ f = open('../crash_data/intersections.csv', 'r')
 cols = f.readline().strip().split(',')
 for i in range(len(cols)): print i, cols[i]
 
-"""
+key = {}
+for i in range(len(cols)): key[cols[i]] = i
 
+"""
+key = { 'INTERSECTION': 0,
+        'NUMBER OF CYCLIST KILLED': 1,
+        'ON STREET NAME': 2,
+        'CRASHES': 3,
+        'NUMBER OF PERSONS KILLED': 4,
+        'NUMBER OF MOTORIST INJURED': 5,
+        'ZIP CODE': 6,
+        'LONGITUDE': 7,
+        'NUMBER OF CYCLIST INJURED': 8,
+        'NUMBER OF MOTORIST KILLED': 9,
+        'CROSS STREET NAME': 10,
+        'NUMBER OF PEDESTRIANS KILLED': 11,
+        'NUMBER OF PEDESTRIANS INJURED': 12,
+        'LATITUDE': 13,
+        'NUMBER OF PERSONS INJURED': 14,
+        'BOROUGH': 15,
+        'OFF STREET NAME': 16,
+        'SPEED HUMP': 17,
+        'YELP_BAR_80': 18,
+        'YELP_DRINK_80': 19,
+        'YELP_FOOD_80': 20,
+        'YELP_MUSIC_80': 21,
+        'YELP_SHOW_80': 22
+        }
 
 @app.route("/")
 def default():
     return jsonify({"msg":"Don't forget to specify a map type!"})
 
-@app.route("/intersections")
-def intersections():
-    #return "hello world"
-    j = {'markers':[], 'circles':[]}
+@app.route("/intersections/")
+@app.route("/intersections/<danger>&<traffic>", methods=['GET'])
+def intersections(danger=None, traffic=None):
+    #return jsonify({'message':"hello", 'danger':danger, "traffic":traffic})
+    j = {'circles':[]}
+    
     f = open('crash_data/intersections.csv', 'r')
     f.readline()  # skip header
-    count = 0
-    #return 'hello world'
     for line in f:
-        count+=1
-        #if count > 20000:
-        #    break
         line = line.strip().split(',')
-        if np.random.random() > 0.8 and line[-4] != 'MANHATTAN':
+        if line[key['BOROUGH']] != 'MANHATTAN': # np.random.random() > 0.5:# and 
             continue
         
-
         #add circles
-        yelp80 = float(line[17])/20
-        crashes = min((255, int(line[3])))
-        color = '#%02x%02x%02x' % (255-(255*yelp80), 255-crashes, 0)
+        d,t = line[key[danger]], line[key[traffic]]
+        red = 255 - ((float(t)/20) * 255)
+        green = 255 - min((255, int(d)))
+        blue = 0
+        color = '#%02x%02x%02x' % (red, green, blue)
         
-        j['circles'].append({'lon':float(line[7]),
-                             'lat':float(line[13]),
-                             'color':color,
-                             'yelp80':yelp80})
-
-        #add markers (first X only)
-        if count > 10:
-            continue        
-        
-        text = """CRASHES: {0} <br>
-                YELP80: {1} <br>
-                PEDESTRIAN INJURIES: {2} <br>
-                PEDESTRIAN DEATHS: {3}""".format(line[3], 
-                                                 line[17],
-                                                 line[12],
-                                                 line[11])
-        j['markers'].append({'lon':float(line[7]),
-                             'lat':float(line[13]), 
-                             'text':text})
-    #return 'hello world'
+        j['circles'].append({'lon':float(line[key['LONGITUDE']]),
+                             'lat':float(line[key['LATITUDE']]),
+                             'color':color})
     f.close()
     return jsonify(j)
 
