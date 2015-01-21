@@ -56,3 +56,5 @@ target/
 # skip the archive and data
 *_data/
 archive/
+ipython_notebook/.ipynb_checkpoints/
+

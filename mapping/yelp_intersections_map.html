@@ -1,0 +1,58 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Intersections Map</title>
+  <meta name="description" content="Smarter Cities">
+  <meta name="author" content="Lucio Tolentino">
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+<script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<script src="../javascript/d3.slider.js"></script>
+<link rel="stylesheet" href="../javascript/d3.slider.css"/>
+
+</head>
+
+<body class="body">
+    
+    <div id = 'explanation'>
+	<h1> INTERSECTIONS </h1>
+    A map of the pedestrian foot traffic (as measured by the number of "FOOD" businesses returned by yelp in an 80 meter radius). For map simplicity we only show the first 5000 (approximately) most dangerous intersections as colored circled (red = more foot traffic, green = less foot traffic). The 20 (approximately) most dangerous intersections for pedestrians are given a marker. 
+    </div>
+
+    <img src="colorscale.png" alt="Color Scale" style="width:300px;height:300px">
+    
+	<div id = 'humps' style="width: 100%; height: 500px; background-color: lightgray;"></div>
+	
+	<script>
+        //make map of humps
+        var map = L.map("humps").setView([40.753597, -73.986808], 13);
+            L.tileLayer('http://{s}.tiles.mapbox.com/v3/seanluciotolentino.jhknj4m5/{z}/{x}/{y}.png',{
+            		maxZoom: 18
+        	}).addTo(map);
+
+        	
+        	//define points
+        	$.get("http://127.0.0.1:5000/intersections",{}).then(function(data){
+                //console.log(data)
+                //console.log(data.markers)
+            
+        	    //add circles
+        	    (data.circles).forEach(function(c){
+                	    	//console.log('circle'+c)
+                	    	L.circle([c.lat, c.lon], 50, {
+                	    	    color: c.color,
+                	    	    fillColor: c.color,
+                	    	    fillOpacity: 0.5
+                       	}).addTo(map);
+            	     });
+        	});
+    </script>
+    
+</body>
+</html>
+
