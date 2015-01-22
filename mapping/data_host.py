@@ -33,11 +33,11 @@ key = { 'INTERSECTION': 0,
         'BOROUGH': 15,
         'OFF STREET NAME': 16,
         'SPEED HUMP': 17,
-        'YELP_BAR_80': 18,
-        'YELP_DRINK_80': 19,
-        'YELP_FOOD_80': 20,
-        'YELP_MUSIC_80': 21,
-        'YELP_SHOW_80': 22
+        'YELP_BAR': 18,
+        'YELP_DRINK': 19,
+        'YELP_FOOD': 20,
+        'YELP_MUSIC': 21,
+        'YELP_SHOW': 22
         }
 
 @app.route("/")

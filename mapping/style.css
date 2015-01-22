@@ -1,8 +1,7 @@
 /* Page structures */
-.body #footer { width: 100%; }
 
 .body {
-background: #FFFFFF url('images/background.png') center center fixed;
+background: #FFFFFF url('background.png') center center fixed;
 background-repeat: no-repeat;
 -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -17,7 +16,7 @@ font-family: 'Oxygen', Helvetica, Verdana, Arial;
 background-color: #000000;
 color: #FFFFFF;
 font-family: 'Oxygen', serif;
-margin: 10px 80px;
+margin: 10px ;
 opacity: 0.8;
 padding: 10px;
 border-radius:5px;
@@ -37,14 +36,8 @@ background-color: black;
 opacity: 0.8;
 border-radius: 5px;
 color: white;
-width: 700px;
+width: 1000px;
 text-align:center;
-}
-
-#footer {
-background-color: #000000;
-color: #FFFFFF;
-height:75px;
 }
 
 /* application */
@@ -55,28 +48,8 @@ border-radius: 5px;
 padding: 20px;
 }
 
-#map {
-width:50%;
-height:300px;
-padding: 10px;
-margin: 20px;
-background-color: #FFFFFF;
-background-clip: content-box;
-border-radius:10px;
-}
-path {
-stroke: white;
-stroke-width: 2px;
-}
-
-#application #buttons {
-border-radius:10px;
-display: inline-block;
-width: 100%;
-}
-#application button{
+#application select, button{
 width: 200px;
-height: 200px;
 margin: 20px;
 border-radius:6px;
 -moz-border-radius: 6px;
@@ -86,10 +59,6 @@ border: #399CB7;
 font-family: 'Oxygen', Helvetica, Verdana, Arial;
 font-size: 14pt;
 padding: 20px;
-/*-webkit-box-shadow: 0px 6px 47px -5px rgba(11,77,135,1);
--moz-box-shadow: 0px 6px 47px -5px rgba(11,77,135,1);
-box-shadow: 0px 6px 47px -5px rgba(11,77,135,1);
-text-shadow: 0 -1px 1px rgba(255,255,255,0.25);*/
 
 background: #399CB7 repeat-x;
     display: inline-block;
@@ -113,13 +82,4 @@ button:focus {
 
 #application button img{
        margin-top:10px;
-}
-
-#input {
-
-margin: 20px;
-}
-
-#run-button{
-	height:100px;
 }
