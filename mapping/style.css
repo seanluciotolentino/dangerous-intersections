@@ -16,11 +16,13 @@ font-family: 'Oxygen', Helvetica, Verdana, Arial;
 background-color: #000000;
 color: #FFFFFF;
 font-family: 'Oxygen', serif;
-margin: 10px ;
+width:100%;
 opacity: 0.8;
 padding: 10px;
 border-radius:5px;
-text-align:center;
+position: fixed;
+z-index: 1;
+margin-top: -70px
 }
 
 #header a {
@@ -31,6 +33,7 @@ color: white;
 
 #introduction {
 margin: 0 auto;
+margin-top: 70px;
 padding: 10px;
 background-color: black;
 opacity: 0.8;
@@ -41,15 +44,15 @@ text-align:center;
 }
 
 /* application */
-#application{
+.application{
 background: rgba(255,255,255,0.9);
 margin: 20px;
 border-radius: 5px;
 padding: 20px;
 }
 
-#application select, button{
-width: 200px;
+.application select, button{
+
 margin: 20px;
 border-radius:6px;
 -moz-border-radius: 6px;
@@ -80,6 +83,16 @@ button:focus {
 }
 
 
-#application button img{
+.application button img{
        margin-top:10px;
 }
+
+.count-icon {
+  background:#ff0000;
+  border:5px solid rgba(255,255,255,0.5);
+  color:#fff;
+  text-align:center;
+  border-radius:50%;
+  line-height:15px;
+  }
+</style
