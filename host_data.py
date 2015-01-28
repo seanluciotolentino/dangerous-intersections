@@ -3,6 +3,7 @@ from flask import jsonify
 from flask_cors import CORS
 import numpy as np
 import pandas as pd
+import os
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -21,7 +22,7 @@ key = {'NUMBER OF CYCLIST KILLED': 0, 'ZIP CODE': 5, 'FOUR_SQUARE_DRINK': 21, 'Y
 
 @app.route("/")
 def default():
-    return jsonify({"msg":"Don't forget to specify a map type!"})
+    return jsonify({"msg":"Flask API working!"})
     
 @app.route("/explore/")
 @app.route("/explore/<danger>&<n>", methods=['GET'])
@@ -141,8 +142,9 @@ def clusters(n_clusters=None):
                              'color':colors[row[1].cluster%len(colors)]})
     return jsonify(j)
 
-
+port = os.getenv('VCAP_APP_PORT', '5000')
 if __name__ == "__main__":
     #app.debug = True
-    app.run()
+    #app.run()
+    app.run(host='0.0.0.0', port=int(port))
 
