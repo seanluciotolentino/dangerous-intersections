@@ -92,7 +92,7 @@ def intersections(danger=None, traffic=None):
     f.close()
     return jsonify(j)
 
-@app.route("/humps")
+@app.route("/humps/")
 def humps():
     #return "hello world"
     j = {'markers':[]}
@@ -125,10 +125,8 @@ def humps():
                              })
     return jsonify(j)
 
-@app.route("/clusters/<n_clusters>", methods=['GET'])
-def clusters(n_clusters=None):
-    if not n_clusters:
-        return jsonify({'error':True, "message":"Not all parameters specified", 'n_clusters':n_clusters})
+@app.route("/clusters/")
+def clusters():
     #define some stuff
     j = {'circles':[]}
     colors = ["#ff0000", "#0000ff", "#40e0d0", "#660066", 
