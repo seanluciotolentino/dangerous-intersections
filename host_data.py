@@ -1,7 +1,7 @@
 from flask import Flask
 from flask import jsonify
 from flask_cors import CORS
-import numpy as np
+import math
 import pandas as pd
 import os
 
@@ -67,7 +67,7 @@ def intersections(danger=None, traffic=None):
     if not danger or not traffic:
         return jsonify({'error':True, "message":"Not all parameters specified", 'danger':danger, "traffic":traffic})
     if "FOUR SQUARE" in traffic:
-        transform = lambda x: 20*np.log(x)
+        transform = lambda x: 20*math.log(x)
     else:
         transform = lambda x: x
     j = {'circles':[]}
