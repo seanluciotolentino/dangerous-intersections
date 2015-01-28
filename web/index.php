@@ -28,9 +28,9 @@
     
     <div id = "introduction">
     	<h1> 
-    		<img src="car.png" alt="car" style="height:25px"></img>
+    		<img src="images/car.png" alt="car" style="height:25px"></img>
     		WalkSafer
-    		<img src="car.png" alt="car" style="height:25px"></img>
+    		<img src="images/car.png" alt="car" style="height:25px"></img>
     	</h1>
 	    <h3> Every year in New York City about 4,000 people are seriously injured in traffic crashes and around  200 are killed. This is a disturbing statistic for anyone that walks in New York City (i.e. everyone in New York City). This project uses the NYPD's crash data, which includes around 600,000 crashes in the city since 01/01/2013, to identify the dangerous intersections and determine the salient features that make them dangerous.</h3>
 	</div>	
@@ -71,7 +71,7 @@
             <div id = 'pd_dd2'></div>
             <p>Redraw the map:</p>
             <button onclick="draw_pt_map()" type="button">Redraw Map</button>
-            <img src="colorscale.png" alt="Color Scale" style="width:250px; height:250px"></img>
+            <img src="images/colorscale.png" alt="Color Scale" style="width:250px; height:250px"></img>
         </div>
 
         <div id="map_output">

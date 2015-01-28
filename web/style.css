@@ -1,7 +1,7 @@
 /* Page structures */
 
 .body {
-background: #FFFFFF url('background.png') center center fixed;
+background: #FFFFFF url('images/background.png') center center fixed;
 background-repeat: no-repeat;
 -webkit-background-size: cover;
   -moz-background-size: cover;
