@@ -132,22 +132,12 @@ def clusters(n_clusters=None):
         return jsonify({'error':True, "message":"Not all parameters specified", 'n_clusters':n_clusters})
     #define some stuff
     j = {'circles':[]}
-    colors = ["#000000", "#ff0000", "#0000ff", "#40e0d0", "#660066", "#ffff00",
+    colors = ["#ff0000", "#0000ff", "#40e0d0", "#660066", 
               "#ff00ff", "#00ff00", "#008000", "#ff69b4"]
 
-    #run the clustering algorithm
-    intersections = pd.read_csv('crash_data/clean_intersections.csv')
-    learning_columns = filter(lambda x: x not in ['name', 'lat', 'lon', 'street1', 
-                                                  'street2', 'month', 'year', 'borocode'],
-                                                  intersections.columns)
-    k_means = KMeans(n_clusters=int(n_clusters)).fit(intersections[learning_columns])
-    #k_means = pickle.load(open('mapping/clusters/{0}_means.pickle'.format(n_clusters), 'r'))
-    intersections["cluster"] = k_means.labels_
-    j['inertia']=k_means.inertia_
-    
     #build the json to return
-    for row in intersections.iterrows():
-        
+    intersections = pd.read_csv('crash_data/clean_intersections.csv')
+    for row in intersections.iterrows():   
         j['circles'].append({'lon':float(row[1].lon),
                              'lat':float(row[1].lat),
                              'color':colors[row[1].cluster%len(colors)]})
