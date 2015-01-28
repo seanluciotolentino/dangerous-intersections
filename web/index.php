@@ -166,7 +166,7 @@
 	        //dropdowns
 	        var danger = d3.select("#pt_danger")[0][0].selectedOptions[0].getAttribute("value")
 	        var traffic = d3.select("#pt_traffic")[0][0].selectedOptions[0].getAttribute("value")
-	        var call = "localhost:5000/intersections/"+danger+"&"+traffic
+	        var call = "http://localhost:5000/intersections/"+danger+"&"+traffic
         	$.get(call,{}).then(function(data){
 	            //add circles
 	            for(var i =0; i<data.circles.length; i++){
@@ -192,14 +192,14 @@
 			//define points
 	        var danger = d3.select("#ea_danger")[0][0].selectedOptions[0].getAttribute("value")
 	        var n = d3.select("#ea_top")[0][0].selectedOptions[0].getAttribute("value")
-			$.get("localhost:5000/explore/"+danger+"&"+n,{}).then(function(data){
+			$.get("http://localhost:5000/explore/"+danger+"&"+n,{}).then(function(data){
 				//add markers
 			    (data.markers).forEach(function(marker){
 			        L.marker([marker.lat, marker.lon], {
 			            icon: L.divIcon({
-				            html: marker.main_text,
-				            className: 'count-icon',
-				            iconSize: [30, 30]
+			            html: marker.main_text,
+			            className: 'count-icon',
+			            iconSize: [30, 30]
 			        	})
 			        }).addTo(ea_map)
 			        	.bindPopup(marker.popup_text);
@@ -242,7 +242,7 @@
 	            size: "m"}
 	        );
 	        L.marker([marker.lat, marker.lon], {
-	            //icon: icon
+	            icon: icon
 	        }).addTo(hump_map)
 	            .bindPopup(marker.text);
 		    });
@@ -277,7 +277,7 @@
 		//define points
         //var danger = d3.select("#ea_danger")[0][0].selectedOptions[0].getAttribute("value")
         //var n = d3.select("#ea_top")[0][0].selectedOptions[0].getAttribute("value")
-		$.get("localhost:5000/clusters/5",{}).then(function(data){
+		$.get("http://localhost:5000/clusters/5",{}).then(function(data){
 	            //add circles
 	            for(var i =0; i<data.circles.length; i++){
 	                c = data.circles[i]
