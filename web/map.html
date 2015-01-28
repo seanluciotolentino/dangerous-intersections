@@ -277,7 +277,7 @@
 		//define points
         //var danger = d3.select("#ea_danger")[0][0].selectedOptions[0].getAttribute("value")
         //var n = d3.select("#ea_top")[0][0].selectedOptions[0].getAttribute("value")
-		$.get("http://104.236.122.56:5000/clusters/5",{}).then(function(data){
+		$.get("http://104.236.122.56:5000/clusters",{}).then(function(data){
 	            //add circles
 	            for(var i =0; i<data.circles.length; i++){
 	                c = data.circles[i]
