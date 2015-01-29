@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <link href='http://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
-  <script src="Leaflet.MakiMarkers.js"></script>
+  <script src="./Leaflet.MakiMarkers.js"></script>
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" href="style.css" media="screen" />
@@ -254,12 +254,12 @@
 	<div id = "cluster" class="application">
 		<a name="cluster"></a> 
         <div id="cluster_explanation" class="explanation">
-            <h1>cluster</h1>
-            <p>Clustering based on different attributes can reveal geographic clusters that struggle with similar problems.</p>
+            <h1>Clusters of danger</h1>
+            <p>Clustering based on different attributes can reveal geographic clusters that struggle with similar problems. We used a k-means clustering algorithm to determine 8 potential clusters and have visualized them on the map using different colors to identify their cluster.</p>
         </div>
 
         <div id="cluster_map_output">
-			<div id="cluster_map" style="width:70%; height:700px;"></div>
+			<div id="cluster_map" style="width:100%; height:700px;"></div>
         </div>
 
         <div style="clear: both; display: block;"></div>
