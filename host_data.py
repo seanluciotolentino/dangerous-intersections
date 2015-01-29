@@ -101,9 +101,9 @@ def humps():
     #return 'hello world'
     for line in f:
         line = line.strip().split(',')
-        lat = float(line[-2].replace("(","").replace('"',''))
-        lon = float(line[-1].replace(")","").replace('"',''))
-        pd3 = float(line[-5])
+        lat = float(line[-8].replace("(","").replace('"',''))
+        lon = float(line[-7].replace(")","").replace('"',''))
+        pd3 = float(line[-10])
         if pd3<0: color = '#%02x%02x%02x' % (255*-max((-1,pd3)), 0, 0)
         elif pd3 > 0: color = '#%02x%02x%02x' %  (0, 255*min((1,pd3)), 0)
         else: color = '#%02x%02x%02x' %  (0, 0, 255)
@@ -116,7 +116,7 @@ def humps():
                 Crashes 6 month before: {5} <br>
                 Crashes 6 month after: {6} </html>"""
                 
-        text = text.format(line[11], float(line[-5]), float(line[-4]), line[21],  line[20], line[23], line[22])
+        text = text.format(line[11], float(line[-11]), float(line[-10]), line[21],  line[20], line[23], line[22])
     
         j['markers'].append({'lon':lon, 
                              'lat':lat, 
@@ -142,7 +142,6 @@ def clusters():
 
 port = os.getenv('VCAP_APP_PORT', '5000')
 if __name__ == "__main__":
-    #app.debug = True
-    #app.run()
+    #app.run(debug = True)
     app.run(host='0.0.0.0', port=int(port))
 
