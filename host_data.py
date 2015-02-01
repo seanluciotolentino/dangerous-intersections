@@ -127,7 +127,7 @@ def humps():
 def clusters():
     #define some stuff
     j = {'circles':[]}
-    colors = ["#FF00FF", "000000", "#008000", "#FFFF00",
+    colors = ["#FF00FF", "#000000", "#008000", "#FFFF00",
               "#0000FF", "#FF0000", "#00FFFF", "#FFFFFF"]
 
     #build the json to return

@@ -194,10 +194,10 @@
 		            //add circles
 		            for(var i =0; i<data.circles.length; i++){
 		                c = data.circles[i]
-	        	    	L.circle([c.lat, c.lon], 50, {
+	        	    	L.circle([c.lat, c.lon], 20, {
 	           	    	    color: c.color,
 	        	    	    fillColor: c.color,
-	        	    	    fillOpacity: 0.5
+	        	    	    fillOpacity: 0.2
 	        	    	}).addTo(cluster_map);
 	        	    };
 	        	});
