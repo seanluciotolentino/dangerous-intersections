@@ -95,4 +95,15 @@ button:focus {
   border-radius:50%;
   line-height:15px;
   }
-</style
+
+.map {
+  margin:0 auto;
+  width:80%; 
+  height:500px;"
+}
+
+img {
+  border-radius: 20px;
+}
+
+</style>
