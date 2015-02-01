@@ -1,10 +1,9 @@
 from flask import Flask
 from flask import jsonify
 from flask_cors import CORS
-import numpy as np
+import math
 import pandas as pd
-from sklearn.cluster import KMeans
-import pickle
+import os
 
 app = Flask(__name__)
 cors = CORS(app)
@@ -14,16 +13,14 @@ CODE SNIPPED TO PRINT COLUMNS AND COLUMN NUMBERS
 f = open('../crash_data/intersections.csv', 'r')
 cols = f.readline().strip().split(',')
 for i in range(len(cols)): print i, cols[i]
-
 key = {}
 for i in range(len(cols)): key[cols[i]] = i
-
 """
 key = {'NUMBER OF CYCLIST KILLED': 0, 'ZIP CODE': 5, 'FOUR_SQUARE_DRINK': 21, 'YELP_SHOW': 20, 'YELP_DRINK': 17, 'OFF STREET NAME': 15, 'NUMBER OF MOTORIST KILLED': 8, 'YELP_MUSIC': 19, 'ON STREET NAME': 1, 'CROSS STREET NAME': 9, 'YELP_FOOD': 18, 'NUMBER OF MOTORIST INJURED': 4, 'LONGITUDE': 6, 'NUMBER OF PEDESTRIANS INJURED': 11, 'NUMBER OF PEDESTRIANS KILLED': 10, 'CRASHES': 2, 'NUMBER OF PERSONS KILLED': 3, 'NUMBER OF CYCLIST INJURED': 7, 'YELP_BAR': 16, 'LATITUDE': 12, 'NUMBER OF PERSONS INJURED': 13, 'BOROUGH': 14, 'FOUR_SQUARE_FOOD': 22}
 
 @app.route("/")
 def default():
-    return jsonify({"msg":"Don't forget to specify a map type!"})
+    return jsonify({"msg":"Flask API working!"})
     
 @app.route("/explore/")
 @app.route("/explore/<danger>&<n>", methods=['GET'])
@@ -68,7 +65,7 @@ def intersections(danger=None, traffic=None):
     if not danger or not traffic:
         return jsonify({'error':True, "message":"Not all parameters specified", 'danger':danger, "traffic":traffic})
     if "FOUR SQUARE" in traffic:
-        transform = lambda x: 20*np.log(x)
+        transform = lambda x: 20*math.log(x)
     else:
         transform = lambda x: x
     j = {'circles':[]}
@@ -93,7 +90,7 @@ def intersections(danger=None, traffic=None):
     f.close()
     return jsonify(j)
 
-@app.route("/humps")
+@app.route("/humps/")
 def humps():
     #return "hello world"
     j = {'markers':[]}
@@ -102,9 +99,9 @@ def humps():
     #return 'hello world'
     for line in f:
         line = line.strip().split(',')
-        lat = float(line[-2].replace("(","").replace('"',''))
-        lon = float(line[-1].replace(")","").replace('"',''))
-        pd3 = float(line[-5])
+        lat = float(line[-8].replace("(","").replace('"',''))
+        lon = float(line[-7].replace(")","").replace('"',''))
+        pd3 = float(line[-10])
         if pd3<0: color = '#%02x%02x%02x' % (255*-max((-1,pd3)), 0, 0)
         elif pd3 > 0: color = '#%02x%02x%02x' %  (0, 255*min((1,pd3)), 0)
         else: color = '#%02x%02x%02x' %  (0, 0, 255)
@@ -117,7 +114,7 @@ def humps():
                 Crashes 6 month before: {5} <br>
                 Crashes 6 month after: {6} </html>"""
                 
-        text = text.format(line[11], float(line[-5]), float(line[-4]), line[21],  line[20], line[23], line[22])
+        text = text.format(line[11], float(line[-11]), float(line[-10]), line[21],  line[20], line[23], line[22])
     
         j['markers'].append({'lon':lon, 
                              'lat':lat, 
@@ -126,16 +123,12 @@ def humps():
                              })
     return jsonify(j)
 
-@app.route("/clusters/<n_clusters>", methods=['GET'])
-def clusters(n_clusters=None):
-    if not n_clusters:
-        return jsonify({'error':True, "message":"Not all parameters specified", 'n_clusters':n_clusters})
+@app.route("/clusters/")
+def clusters():
     #define some stuff
     j = {'circles':[]}
-    #colors = ["#ff0000", "#0000ff", "#40e0d0", "#660066", 
-    #          "#ff00ff", "#00ff00", "#008000", "#ff69b4"]
-    #cols = ['magenta', 'black', 'green', 'yellow', 'blue', 'red', 'cyan', 'white']
-    colors = ["#FF00FF", "000000", "#008000", "#FFFF00", "#0000FF", "#FF0000", "#00FFFF", "#FFFFFF"]
+    colors = ["#FF00FF", "000000", "#008000", "#FFFF00",
+              "#0000FF", "#FF0000", "#00FFFF", "#FFFFFF"]
 
     #build the json to return
     intersections = pd.read_csv('crash_data/clean_intersections.csv')
@@ -145,8 +138,7 @@ def clusters(n_clusters=None):
                              'color':colors[row[1].cluster%len(colors)]})
     return jsonify(j)
 
-
+port = os.getenv('VCAP_APP_PORT', '5000')
 if __name__ == "__main__":
-    #app.debug = True
-    app.run()
-
+    #app.run(debug = True)
+    app.run(host='0.0.0.0', port=int(port))
