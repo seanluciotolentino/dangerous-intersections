@@ -1,10 +1,8 @@
 # Dangerous Intersections
 
-This is the repository for Lucio Tolentino's work on the NYPD crash data set. The 
-data is hosted from the open data portal (https://data.cityofnewyork.us/) -- I 
-can't host it here because of GitHub's file limit size.
+This is the repository for Lucio Tolentino's work on the NYPD crash data set. The data is hosted from the open data portal (https://data.cityofnewyork.us/) -- I can't host it here because of GitHub's file limit size. You can check out the final product at walksafer.herokuapp.com (walksafer.herokuapp.com). 
 
-IPython Notebooks
+Installing and Exploring
 ----------------
 
 First, download the [crash data] (https://data.cityofnewyork.us/NYC-BigApps/NYPD-Motor-Vehicle-Collisions/h9gi-nx95?) as a CSV and place it
