@@ -15,19 +15,10 @@ to *explore* the data a bit.
 Mapping
 -------------------
 
-To check out the maps, you'll need to first run the data server with:
-
-```
-  python host_data.py
-```
-
-This will start a server for the data and you can just open the map.html file
-with your browser. You might have to change the map.html files to reflect the
-IP address and port number returned from host_data.py.
+To check out the maps open map.html from your browser. It'll make calls to the API living on my digital ocean instance. The code for the api is in host_data.py in the main directory. 
 
 Disclaimer
 -----------------------
 
-As I write all this I realize how confusing it all is. I'll eventually put it 
-into an easier to digest form. Until then, I apologize.
+I'm awesome. 
  
