@@ -138,6 +138,20 @@ def clusters():
                              'color':colors[row[1].cluster%len(colors)]})
     return jsonify(j)
 
+@app.route("/schools/")
+def clusters():
+    #define some stuff
+    j = {'circles':[]}
+    colors = ["#FF00FF", "#000000", "#008000", "#FFFF00",
+              "#0000FF", "#FF0000", "#00FFFF", "#FFFFFF"]
+
+    #build the json to return
+    intersections = pd.read_csv('crash_data/clean_intersections.csv')
+    for row in intersections.iterrows():   
+        j['circles'].append({'lon':float(row[1].lon),
+                             'lat':float(row[1].lat),
+                             'color':colors[row[1].cluster%len(colors)]})
+
 port = os.getenv('VCAP_APP_PORT', '5000')
 if __name__ == "__main__":
     #app.run(debug = True)
