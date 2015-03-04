@@ -110,7 +110,7 @@
 	</div>
 
 	<script>
-	   var ipaddr = "192.168.1.255";
+	   var ipaddr = "104.236.122.56";
 	
 		//define dropdowns here
 	    var dropdowns = [
