@@ -1,6 +1,7 @@
 {
         "status": "Beta",
         "thumbnailUrl": "http://upload.wikimedia.org/wikipedia/commons/c/cf/1916_Ford_Model_T_Speedster%2C_March_26%2C_1916%2C_California_%285643782311%29.jpg",
+	"video":"https://www.youtube.com/watch?v=cAUGp_nvUZA&feature=youtu.be",
         "bornAt": "BetaNYC hacknight",
         "geography": "NYC",
         "politicalEntity":"",
