@@ -1,22 +1,21 @@
 # Dangerous Intersections
 
-This is the repository for Lucio Tolentino's work on the NYPD crash data set. The data is hosted from the open data portal (https://data.cityofnewyork.us/) -- I can't host it here because of GitHub's file limit size. You can check out the final product at http://walksafer.herokuapp.com. 
+This is the repository for Lucio Tolentino's work on the NYPD crash data set. The data was geo-tagged, aggregated to intersections, and is not hosted from BetaNYC's data portal (http://data.beta.nyc/dataset/crash-data). The final product is on heroku and you can check it out here http://walksafer.herokuapp.com. 
 
 Installing and Exploring
 ----------------
 
-First, download the [crash data] (https://data.cityofnewyork.us/NYC-BigApps/NYPD-Motor-Vehicle-Collisions/h9gi-nx95?) as a CSV and place it
-in a subfolder called "crash_data". Use IntersectionBuilding.ipynb (in the ipython_notebook
- subfolder) to build the intersections data set. You can then use IntersectionExploration.ipynb
-to *explore* the data a bit.
+First, download the [intersection data] (http://data.beta.nyc/dataset/crash-data) into the "crash_data" subfolder. Second, download the [speed hump data] (http://data.beta.nyc/dataset/speed-humps) into the "intervention_data" subfolder. You can then open map.html with your broswer.
 
-Mapping
+Additionally I've provided the ipython notebooks (IntersectionExploration.ipynb in the ipython_notebook subfolder) for exploring the data some. [Click here] (http://ipython.org/notebook.html) to learn how to use ipython notebooks. 
+
+Overview of Program Flow
 -------------------
 
-To check out the maps open map.html from your browser. It'll make calls to the API living on my digital ocean instance. The code for the api is in host_data.py in the main directory. 
+The front end is a single php file (index.php) in the web subfolder. When it is opened it makes calls a flask api (host_data.py) that is currently running on a digitial ocean instance. 
 
-Disclaimer
+Call for help
 -----------------------
 
-I'm awesome. 
+If you're interested in the project and want to contribute consider cloning / forking the project and tackling some of the issues (click that little "issues" tab between "code" and "pull requests"). If you need clarification about an issue, write a comment on it and I'll get back to you. 
  

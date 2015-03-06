@@ -35,7 +35,7 @@
     		WalkSafer
     		<img src="images/car.png" alt="car" style="height:25px"></img>
     	</h1>
-	    <h3> Every year in New York City about 4,000 people are seriously injured in traffic crashes and around  200 are killed. This is a disturbing statistic for anyone that walks in New York City (i.e. everyone in New York City). This project uses the NYPD's crash data, which includes around 600,000 crashes in the city since 01/01/2013, to identify the dangerous intersections and determine the salient features that make them dangerous.</h3>
+	    <h3> Every year in New York City about 4,000 people are seriously injured in traffic crashes and around  200 are killed. This is a disturbing statistic for anyone that walks in New York City (i.e. everyone in New York City). This project uses the NYPD's crash data, which includes around 600,000 crashes in the city since 01/01/2013, to identify the dangerous intersections and determine the salient features that make them dangerous. Check out the code on <a href="https://github.com/seanluciotolentino/dangerous-intersections">GitHub<a>.</h3>
 	</div>
 
 	<!-- CLUSTER STUFF -->
@@ -110,7 +110,7 @@
 	</div>
 
 	<script>
-	   var ipaddr = "192.168.1.255";
+	   var ipaddr = "104.236.122.56";
 	
 		//define dropdowns here
 	    var dropdowns = [

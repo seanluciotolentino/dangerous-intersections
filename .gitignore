@@ -54,7 +54,8 @@ docs/_build/
 target/
 
 # skip the archive and data
-*_data/
+crash_data/*.csv
+intervention_data/*.csv
 archive/
 ipython_notebook/.ipynb_checkpoints/
 
