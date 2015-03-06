@@ -138,8 +138,8 @@ def clusters():
                              'color':colors[row[1].cluster%len(colors)]})
     return jsonify(j)
 
-@app.route("/schools/")
-def clusters():
+@app.route("/schools/") # NOT IMPLEMENTED YET!
+def schools():
     #define some stuff
     j = {'circles':[]}
     colors = ["#FF00FF", "#000000", "#008000", "#FFFF00",

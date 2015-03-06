@@ -110,6 +110,8 @@
 	</div>
 
 	<script>
+	   var ipaddr = "192.168.1.255";
+	
 		//define dropdowns here
 	    var dropdowns = [
 	    				{"name":"ea_danger", 
@@ -190,7 +192,7 @@
 			}).addTo(cluster_map);
 			
 			//define points
-			$.get("http://104.236.122.56:5000/clusters",{}).then(function(data){
+			$.get("http://"+ipaddr+":5000/clusters",{}).then(function(data){
 		            //add circles
 		            for(var i =0; i<data.circles.length; i++){
 		                c = data.circles[i]
@@ -216,7 +218,7 @@
 			//define points
 	        var danger = d3.select("#ea_danger")[0][0].selectedOptions[0].getAttribute("value")
 	        var n = d3.select("#ea_top")[0][0].selectedOptions[0].getAttribute("value")
-			$.get("http://104.236.122.56:5000/explore/"+danger+"&"+n,{}).then(function(data){
+			$.get("http://"+ipaddr+":5000/explore/"+danger+"&"+n,{}).then(function(data){
 				//add markers
 			    (data.markers).forEach(function(marker){
 			        L.marker([marker.lat, marker.lon], {
@@ -243,7 +245,7 @@
 	        //dropdowns
 	        var danger = d3.select("#pt_danger")[0][0].selectedOptions[0].getAttribute("value")
 	        var traffic = d3.select("#pt_traffic")[0][0].selectedOptions[0].getAttribute("value")
-	        var call = "http://104.236.122.56:5000/intersections/"+danger+"&"+traffic
+	        var call = "http://"+ipaddr+":5000/intersections/"+danger+"&"+traffic
         	$.get(call,{}).then(function(data){
 	            //add circles
 	            for(var i =0; i<data.circles.length; i++){
@@ -265,7 +267,7 @@
 			}).addTo(hump_map);
 			
 			//define points
-			$.get("http://104.236.122.56:5000/humps/",{}).then(function(data){
+			$.get("http://"+ipaddr+":5000/humps/",{}).then(function(data){
 				//add markers
 			    (data.markers).forEach(function(marker){
 		        var icon = L.MakiMarkers.icon({
