@@ -12,7 +12,7 @@ Additionally I've provided the ipython notebooks (IntersectionExploration.ipynb 
 Overview of Program Flow
 -------------------
 
-The front end is a single php file (index.php) in the web subfolder. When it is opened it makes calls to a flask api (host_data.py) that is currently running on a digitial ocean instance. 
+The front end is a single php file (index.php) in the web subfolder. When it is opened it makes a call to a flask api (host_data.py) that is currently running on a digitial ocean instance. 
 
 Call for help
 -----------------------
