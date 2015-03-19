@@ -75,6 +75,7 @@
 	</div>
 
 	<!-- PED TRAFFIC-->
+	<!--
 	<div id = "pedestrian_traffic" class="application">
 		<a name="pedestrian_traffic"></a> 
             
@@ -99,7 +100,7 @@
         <p>The result shows that there's a significant correlation between foot traffic and crashes (notice the black patch near Times Square!), but many high crash intersections are near the entrances to Manhattan (i.e. the Queensboro Bridge and Lincoln Tunnel). This suggests that it's not a perponderance of pedestrians, but an excess of anxious drivers leading to crashes.</p>
 
 	</div>
-
+	-->
 	<!-- CLUSTER STUFF
 	<div id = "cluster" class="application">
 		<a name="cluster"></a> 
@@ -123,7 +124,8 @@
 	    var dropdowns = [	                    
 	    				{"name": "ea_number",
 	                     "select":"span#ea_dd1",
-	                     "values": ["10",
+	                     "values": ["5",
+	                     			"10",
 	                                "25",
 	                                "50",
 	                                "100",
