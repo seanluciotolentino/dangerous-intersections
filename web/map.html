@@ -116,8 +116,8 @@
  	-->
 	<script>
 		$.ajaxSetup({timeout:20000});
-	   //var ipaddr = "104.236.122.56";
-	   var ipaddr = "127.0.0.1";
+	   var ipaddr = "104.236.122.56";
+	   //var ipaddr = "127.0.0.1";
 	
 		//define dropdowns here
 	    var dropdowns = [	                    

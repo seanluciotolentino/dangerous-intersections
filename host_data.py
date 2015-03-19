@@ -214,7 +214,9 @@ def schools():
 port = os.getenv('VCAP_APP_PORT', '5000')
 if __name__ == "__main__":
     #preload crash data
+    print "loading crash data..."
     crashes = pd.read_csv('crash_data/crashes_clean.csv')
     crashes.DATE = crashes.DATE.apply(pd.to_datetime)
-    #app.run(debug = True)
-    app.run(host='0.0.0.0', port=int(port))
+    print 'done.'
+    app.run(debug = True)
+    #app.run(host='0.0.0.0', port=int(port))
