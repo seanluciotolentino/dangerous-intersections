@@ -24,8 +24,8 @@
 		<a href="map.html">Top</a>
 		<a href="#exploratory_analysis">Exploratory Analysis</a>
 	    <a href="#speed_humps">Speed Humps</a>
-		<a href="#pedestrian_traffic">Pedestrian Traffic</a>
-	    <a href="#cluster">K-means Clustering</a>
+		<!--<a href="#pedestrian_traffic">Pedestrian Traffic</a>-->
+	    <!--<a href="#cluster">K-means Clustering</a>-->
 	</div>
     
     <!-- INTRODUCTION -->
