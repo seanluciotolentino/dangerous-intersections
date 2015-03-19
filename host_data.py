@@ -218,5 +218,5 @@ if __name__ == "__main__":
     crashes = pd.read_csv('crash_data/crashes_clean.csv')
     crashes.DATE = crashes.DATE.apply(pd.to_datetime)
     print 'done.'
-    app.run(debug = True)
-    #app.run(host='0.0.0.0', port=int(port))
+    #app.run(debug = True)
+    app.run(host='0.0.0.0', port=int(port))
