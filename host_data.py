@@ -41,19 +41,19 @@ def explore(danger=None, n=None, loc_type=None, loc_spec=None, start=0, end=0):
         global crashes
         s = datetime.datetime.strptime(start, '%b %Y')
         e = datetime.datetime.strptime(end, '%b %Y')+datetime.timedelta(days=30)
-        crashes = crashes[(crashes.DATE >= s) & (crashes.DATE <= e)]
+        df = crashes[(crashes.DATE >= s) & (crashes.DATE <= e)]
         if len(crashes) == 0:  # no crashes in that time frame
             print "Zero crashes for that time period"
             return jsonify({'markers':[], 'success':False})
 
         # do the grouping procedure
-        df = group(crashes)
+        df = group(df)
         
     #get for the specific location
     if loc_type == "CITYWIDE":
         intersections = df.sort(danger, ascending=False).head(n=int(n)).iterrows()
     else:
-        if loc_type is not "BOROUGH":
+        if loc_type != "BOROUGH":
             loc_spec = int(loc_spec)
         intersections = df[df[loc_type]==loc_spec].sort(danger, ascending=False).head(n=int(n)).iterrows()
     
@@ -87,11 +87,7 @@ def group(crashes):
     """
     Helper function for doing the groupby operation when looking
     for crashes within a specific time slice.
-    """
-    #add index and crash counter
-    crashes['INTERSECTION'] = crashes['LATITUDE'].apply(str) + "_" + crashes['LONGITUDE'].apply(str)
-    crashes['CRASHES'] = 1
-    
+    """   
     #group and aggregate
     gb = crashes.groupby(by='INTERSECTION', as_index=False)
     longest = lambda x: x.get(x.map(lambda x: len(str(x))).idxmax())  # longest string
@@ -217,6 +213,8 @@ if __name__ == "__main__":
     print "loading crash data..."
     crashes = pd.read_csv('crash_data/crashes_clean.csv')
     crashes.DATE = crashes.DATE.apply(pd.to_datetime)
+    crashes['INTERSECTION'] = crashes['LATITUDE'].apply(str) + "_" + crashes['LONGITUDE'].apply(str)
+    crashes['CRASHES'] = 1
     print 'done.'
     #app.run(debug = True)
     app.run(host='0.0.0.0', port=int(port))
