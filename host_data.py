@@ -125,7 +125,7 @@ def intersections(danger=None, traffic=None):
         transform = lambda x: x
     j = {'circles':[]}
     
-    f = open('crash_data/intersections.csv', 'r')
+    f = open('crash_data/traffic_intersections.csv', 'r')
     f.readline()  # skip header
     for line in f:
         line = line.strip().split(',')

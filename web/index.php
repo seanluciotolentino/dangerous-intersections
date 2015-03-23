@@ -24,8 +24,8 @@
 		<a href="map.html">Top</a>
 		<a href="#exploratory_analysis">Exploratory Analysis</a>
 	    <a href="#speed_humps">Speed Humps</a>
-		<!--<a href="#pedestrian_traffic">Pedestrian Traffic</a>-->
-	    <!--<a href="#cluster">K-means Clustering</a>-->
+		<a href="#pedestrian_traffic">Pedestrian Traffic</a>
+	    <a href="#cluster">K-means Clustering</a>
 	</div>
     
     <!-- INTRODUCTION -->
@@ -75,7 +75,6 @@
 	</div>
 
 	<!-- PED TRAFFIC-->
-	<!--
 	<div id = "pedestrian_traffic" class="application">
 		<a name="pedestrian_traffic"></a> 
             
@@ -100,8 +99,8 @@
         <p>The result shows that there's a significant correlation between foot traffic and crashes (notice the black patch near Times Square!), but many high crash intersections are near the entrances to Manhattan (i.e. the Queensboro Bridge and Lincoln Tunnel). This suggests that it's not a perponderance of pedestrians, but an excess of anxious drivers leading to crashes.</p>
 
 	</div>
-	-->
-	<!-- CLUSTER STUFF
+
+	<!-- CLUSTER STUFF-->
 	<div id = "cluster" class="application">
 		<a name="cluster"></a> 
 
@@ -114,7 +113,7 @@
         <p>Using <i>k-means clustering</i> can reveal clusters of intersections that struggle with similar problems. We ran the algorithm with k=8, and visualized the clusters that intersections were assigned to in the map above. The word cloud below it shows the characteristics most associated with that cluster. The analysis suggests that texting is a large problem in Manhattan and Brooklyn, and on main streets in Queens. </p>
         
 	</div>
- 	-->
+ 	
 	<script>
 		$.ajaxSetup({timeout:20000});
 	   var ipaddr = "104.236.122.56";
@@ -124,8 +123,7 @@
 	    var dropdowns = [	                    
 	    				{"name": "ea_number",
 	                     "select":"span#ea_dd1",
-	                     "values": ["5",
-	                     			"10",
+	                     "values": ["10",
 	                                "25",
 	                                "50",
 	                                "100",
@@ -389,16 +387,17 @@
 		}
 
 		//CREATE MAPS AND CALL RESPECTIVE DRAW FUNCTIONS
-	    var ea_map = L.map("exploratory_analysis_maps").setView([40.686106, -73.946747], 11);
-	    draw_ea_map()
+		var ea_map = L.map("exploratory_analysis_maps").setView([40.686106, -73.946747], 11);
+		draw_ea_map()
+		
 		var hump_map = L.map("humps").setView([40.772125, -73.974792], 13);
 		draw_speed_hump_map()
-	    //var ped_map = L.map("ped_map").setView([40.753597, -73.986808
-	    //	], 13);
-	    //draw_pt_map()
-	    //var cluster_map = L.map("cluster_map").setView([40.753597, -73.986808], 13);
-	    //draw_cluster_map()
+		
+		var ped_map = L.map("ped_map").setView([40.753597, -73.986808], 13);
+		draw_pt_map()
 
+		var cluster_map = L.map("cluster_map").setView([40.75359, -73.9868],13);
+		draw_cluster_map()
 
     </script>
 
