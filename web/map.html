@@ -25,7 +25,7 @@
 		<a href="#exploratory_analysis">Exploratory Analysis</a>
 	    <a href="#speed_humps">Speed Humps</a>
 		<a href="#pedestrian_traffic">Pedestrian Traffic</a>
-	    <a href="#cluster">K-means Clustering</a>
+	    <!--<a href="#cluster">K-means Clustering</a>-->
 	</div>
     
     <!-- INTRODUCTION -->
@@ -100,7 +100,7 @@
 
 	</div>
 
-	<!-- CLUSTER STUFF-->
+	<!-- CLUSTER STUFF
 	<div id = "cluster" class="application">
 		<a name="cluster"></a> 
 
@@ -111,6 +111,8 @@
 		<img src="images/wordcloud.png" alt="wordcloud" style="display: block; margin-left: auto; margin-right: auto; opacity: 0.7"></img>
             
         <p>Using <i>k-means clustering</i> can reveal clusters of intersections that struggle with similar problems. We ran the algorithm with k=8, and visualized the clusters that intersections were assigned to in the map above. The word cloud below it shows the characteristics most associated with that cluster. The analysis suggests that texting is a large problem in Manhattan and Brooklyn, and on main streets in Queens. </p>
+     -->  
+        
         
 	</div>
  	
@@ -396,8 +398,8 @@
 		var ped_map = L.map("ped_map").setView([40.753597, -73.986808], 13);
 		draw_pt_map()
 
-		var cluster_map = L.map("cluster_map").setView([40.75359, -73.9868],13);
-		draw_cluster_map()
+		//ar cluster_map = L.map("cluster_map").setView([40.75359, -73.9868],13);
+		//draw_cluster_map()
 
     </script>
 
