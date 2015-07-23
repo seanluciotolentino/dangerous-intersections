@@ -21,6 +21,11 @@ def test():
     xhr.send(null)
     xhr.response
     """
+    global crashes
+    crashes = pd.read_csv('data/crashes_test.csv')
+    crashes.DATE = crashes.DATE.apply(pd.to_datetime)
+    crashes['INTERSECTION'] = crashes['LATITUDE'].apply(str) + "_" + crashes['LONGITUDE'].apply(str)
+    crashes['CRASHES'] = 1
     return jsonify({'response':'everything is okay'})
     
 @app.route("/explore/")
@@ -195,8 +200,7 @@ port = os.getenv('VCAP_APP_PORT', '5000')
 if __name__ == "__main__":
     #preload crash data
     print "loading crash data..."
-    crashes = pd.read_csv('data/crashes_clean.csv')
-    #crashes = pd.read_csv('data/crashes_test.csv')
+    crashes = pd.read_csv('data/crashes_test.csv')
     crashes.DATE = crashes.DATE.apply(pd.to_datetime)
     crashes['INTERSECTION'] = crashes['LATITUDE'].apply(str) + "_" + crashes['LONGITUDE'].apply(str)
     crashes['CRASHES'] = 1
