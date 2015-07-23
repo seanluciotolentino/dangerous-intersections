@@ -5,7 +5,6 @@ import math
 import pandas as pd
 import os
 import datetime
-import numpy as np
 
 app = Flask(__name__)
 
@@ -94,15 +93,15 @@ def group(crashes):
                u'ON STREET NAME':mirror,
                u'CROSS STREET NAME':mirror,
                u'OFF STREET NAME':mirror,
-               u'NUMBER OF PERSONS INJURED':np.sum,
-               u'NUMBER OF PERSONS KILLED':np.sum,
-               u'NUMBER OF PEDESTRIANS INJURED':np.sum,
-               u'NUMBER OF PEDESTRIANS KILLED':np.sum,
-               u'NUMBER OF CYCLIST INJURED':np.sum,
-               u'NUMBER OF CYCLIST KILLED':np.sum,
-               u'NUMBER OF MOTORIST INJURED':np.sum,
-               u'NUMBER OF MOTORIST KILLED':np.sum,
-               'CRASHES':np.sum
+               u'NUMBER OF PERSONS INJURED':sum,
+               u'NUMBER OF PERSONS KILLED':sum,
+               u'NUMBER OF PEDESTRIANS INJURED':sum,
+               u'NUMBER OF PEDESTRIANS KILLED':sum,
+               u'NUMBER OF CYCLIST INJURED':sum,
+               u'NUMBER OF CYCLIST KILLED':sum,
+               u'NUMBER OF MOTORIST INJURED':sum,
+               u'NUMBER OF MOTORIST KILLED':sum,
+               'CRASHES':sum
                }
 
     return gb.aggregate(agg_fun)
